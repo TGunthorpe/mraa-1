@@ -50,6 +50,7 @@ Specific platform information for supported platforms is documented here:
 - @ref up
 - @ref joule
 - @ref ft4222
+- @ref pico_pi_imx7
 
 ## DEBUGGING
 
