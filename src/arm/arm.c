@@ -31,6 +31,7 @@
 #include "arm/banana.h"
 #include "arm/beaglebone.h"
 #include "arm/phyboard.h"
+#include "arm/pico_pi_imx7.h"
 #include "arm/raspberry_pi.h"
 #include "mraa_internal.h"
 
@@ -94,6 +95,9 @@ mraa_arm_platform()
             platform_type = MRAA_96BOARDS;
         else if (mraa_file_contains("/proc/device-tree/compatible", "raspberrypi,"))
             platform_type = MRAA_RASPBERRY_PI;
+        else if (mraa_file_contains_both("/proc/device-tree/model", "PICO-IMX7", " PI ")) {
+            platform_type = MRAA_PICO_PI_IMX7;
+        }
     }
 
     switch (platform_type) {
@@ -114,6 +118,9 @@ mraa_arm_platform()
             break;
         case MRAA_DE_NANO_SOC:
             plat = mraa_de_nano_soc();
+            break;
+        case MRAA_PICO_PI_IMX7:
+            plat = mraa_pico_pi_imx7();
             break;
         default:
             plat = NULL;
